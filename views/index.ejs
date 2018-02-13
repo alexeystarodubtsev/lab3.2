@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>ToDo</title>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lato:100"     rel="stylesheet"> -->
+    <link href="css/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="js/fun.js"></script>
+  </head>
+<body>
+    <div class="container">
+        <h2>Todo list </h2>
+        <div id="list">
+            <div>
+                <% if (todos.length == 0) {%>
+                <div>Нет заметок</div>
+                <%} %>
+                <% for (var i = 0; i < todos.length; i++) {%>
+                <div>
+                    <input type="checkbox" name="todo" onClick="check(this)" 
+                      id="<%= todos[i]._id %>" <%= todos[i].check ? "checked" : "" %>/>
+                    <label for="<%= todos[i]._id %>"><%= todos[i].name %></label>
+                    !!!!
+                    <label for="<%= todos[i]._id %>"><%= todos[i]._id %></label>
+                    !!!!
+                    <label for="<%= todos[i]._id %>"><%= typeof todos[i].check %></label>
+                    !!!!
+                    <label for="<%= todos[i]._id %>"><%= todos[i]._id %></label>
+                    !!!!
+                    <label for="<%= todos[i]._id %>"><%= todos[i].beginningDateTime %></label>
+                    !!!!
+                    <label for="<%= todos[i]._id %>"><%= todos[i].endDateTime %></label>
+                    <div class="info">
+                    <%= todos[i].info %>
+                    </div>
+                   
+                    <button onClick="deleteTodo(this)" id="<%= todos[i]._id %>">Удал</button>
+                </div>
+                <%} %>
+            </div>
+        </div>
+        <div>Новая задача
+            <form action ="/addtask" method="POST">
+                <label>Название: 
+                    <input type="text" name="name" placeholder="Название задачи">
+                </label>
+                <label>Другая информация: 
+                    <textarea name="info"></textarea>
+                </label>
+                <label>Дедлайн: 
+                    <input type="datetime" name="endDateTime" value="2018-02-25T12:13">
+                </label>
+                <label>Время на клиенте: 
+                    <input type="datetime" name="beginningDateTime" value="2018-02-07T12:15">
+                </label>
+                <button>Добавить</button>
+            </form>
+            
+            <form action ="/removechecked" method="POST">
+                <button>Удалить сделанные</button>
+            </form>
+            <form action ="/sort" method="POST">
+                <button>Сортировка по выполненным</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
